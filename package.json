@@ -1,0 +1,27 @@
+{
+  "name": "patch-updater",
+  "version": "1.0.0",
+  "description": "hello world sample for NodeJS",
+  "main": "src/app.ts",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.29.1",
+    "aws-lambda": "^1.0.6",
+    "aws-sdk": "^2.1003.0",
+    "lodash": "^4.17.21",
+    "@types/aws-lambda": "^8.10.83",
+    "@types/lodash": "^4.14.175"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc --build",
+    "postBuild": "cp package.json dist/package.json && cd dist && npm i --only=production"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.10.3",
+    "jest": "^27.2.5",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.3"
+  }
+}

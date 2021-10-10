@@ -1,0 +1,1 @@
+aws lambda update-function-code --function-name patchUpdaterTest --zip-file fileb://${PWD}/lambda.zip
