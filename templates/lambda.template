@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  PatchTablePatchUpdaterLambdaMapping:
+    Type: 'AWS::Lambda::EventSourceMapping'
+    Properties:
+      EventSourceArn: >-
+        arn:aws:dynamodb:ap-southeast-2:727861035172:table/cm-ods-dev-customer-patch/stream/2021-10-09T08:55:16.556
+      FunctionName: PatchUpdater
+      StartingPosition: LATEST
+    DependsOn:
+      - PatchUpdaterLambda
+  PatchUpdaterLambda:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Role: arn:aws:iam::727861035172:role/service-role/TestLambdaRole-Ying
+      FunctionName: PatchUpdater
+      PackageType: Image
+      Code:
+        ImageUri: '727861035172.dkr.ecr.ap-southeast-2.amazonaws.com/patch-updater:latest'
