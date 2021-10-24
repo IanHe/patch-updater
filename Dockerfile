@@ -1,3 +1,6 @@
+# refer: https://medium.com/geekculture/setup-a-lambda-function-using-docker-72356e0a4f13
+# refer: https://github.com/aws/aws-lambda-nodejs-runtime-interface-client
+
 # Define custom function directory
 ARG FUNCTION_DIR="/function"
 
