@@ -1,0 +1,1 @@
+aws cloudformation create-stack --stack-name create-roles --template-body file://${PWD}/CreateRoles.yaml --capabilities CAPABILITY_IAM

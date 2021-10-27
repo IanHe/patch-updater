@@ -1,0 +1,99 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: A CloudFormation Stack to create DynamoDB tables 
+
+Parameters:
+  Environment:
+    Description: Workplace Environment
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - sit1
+      - sit3
+      - sit5
+      - perf
+      - prod
+
+Resources: 
+  MyTableA:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub 'MyTableA-${Environment}'
+      AttributeDefinitions:
+        - AttributeName: "partitionKey"
+          AttributeType: "S"
+        - AttributeName: "sorId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "partitionKey"
+          KeyType: "HASH"
+        - AttributeName: "sorId"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
+
+  MyTableB:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      TableName: !Sub 'MyTableB-${Environment}'
+      AttributeDefinitions:
+        - AttributeName: "partitionKey"
+          AttributeType: "S"
+        - AttributeName: "sortKey"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "partitionKey"
+          KeyType: "HASH"
+        - AttributeName: "sortKey"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+
+  MyTableC:
+    Type: AWS::DynamoDB::Table
+    Properties: 
+      TableName: !Sub 'MyTableC-${Environment}'
+      AttributeDefinitions:
+        - AttributeName: "partitionKey"
+          AttributeType: "S"
+        - AttributeName: "sortKey"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "partitionKey"
+          KeyType: "HASH"
+        - AttributeName: "sortKey"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+  
+Outputs:
+
+  TableAArn:
+    Description: The ARN of TableA
+    Value: !GetAtt MyTableA.Arn
+    Export:
+      Name: TableA-Arn
+
+  TableAStreamArn:
+    Description: The Stream ARN of TableA
+    Value: !GetAtt MyTableA.StreamArn
+    Export:
+      Name: TableA-StreamArn
+
+  TableBArn:
+    Description: The ARN of TableB
+    Value: !GetAtt MyTableB.Arn
+    Export:
+      Name: TableB-Arn
+
+  TableCArn:
+    Description: The ARN of TableC
+    Value: !GetAtt MyTableC.Arn
+    Export:
+      Name: TableC-Arn
+  

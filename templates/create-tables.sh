@@ -1,0 +1,1 @@
+aws cloudformation create-stack --stack-name create-tables --template-body file://${PWD}/CreateTables.yaml
