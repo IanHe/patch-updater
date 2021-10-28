@@ -9,5 +9,6 @@ docker build -t patch-updater .
 id=$(docker create patch-updater)
 # copy lambda.zip to local
 docker cp $id:/function/lambda.zip - > ./lambda.zip
-docker rm -v $id
+# remove container and images
+docker rm -f $id
 docker rmi -f patch-updater
